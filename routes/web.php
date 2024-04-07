@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,7 @@ Route::post('/register',[AdminController::class,'store'])->name('store.admins');
 Route::get('/login',[AdminController::class,'login'])->name('login.admins');
 Route::post('/login',[AdminController::class,'loginCheck'])->name('loginCheck.admins');
 Route::get('/logout',[AdminController::class,'logout'])->name('logout.admins');
+
+Route::get('/category/create',[CategoryController::class,'create'])->name('create.category');
+Route::post('/category/create',[CategoryController::class,'store'])->name('store.category');
+Route::get('/category/list',[CategoryController::class,'index'])->name('list.category');

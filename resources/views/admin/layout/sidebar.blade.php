@@ -5,8 +5,8 @@
       <ul class="nav side-menu">
         <li><a><i class="fa fa-home"></i> Category Manager <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="">Create</a></li>
-            <li><a href="">List</a></li>
+            <li><a href="{{route('create.category')}}">Create</a></li>
+            <li><a href="{{route('list.category')}}">List</a></li>
             
           </ul>
         </li>
