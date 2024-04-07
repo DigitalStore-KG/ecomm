@@ -12,8 +12,8 @@
         </li>
         <li><a><i class="fa fa-edit"></i> Product Manager <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="">Create</a></li>
-            <li><a href="">List</a></li>
+            <li><a href="{{route('create.product')}}">Create</a></li>
+            <li><a href="{{route('list.product')}}">List</a></li>
           </ul>
         </li>
         <li><a><i class="fa fa-desktop"></i> User Manager <span class="fa fa-chevron-down"></span></a>

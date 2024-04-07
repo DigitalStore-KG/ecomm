@@ -54,9 +54,12 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(Category $category,$id)
     {
-        //
+        $category=  Category::find($id);
+        
+        $categories=    Category::whereNull('category_id')->get();
+        return view('admin.category.editCategory',compact('category','categories'));
     }
 
     /**
@@ -64,14 +67,26 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $data=[
+            'name'=>$request->name,
+            'category_id'=> $request->category_id,
+        ];
+        $record=$category->update($data);
+        if($record){
+            return redirect()->route('list.category')->with('message','Record updated successfully');
+        }else{
+            return back()->with('error','Record is not updated');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(Request $request)
     {
-        //
+        $id=$request->id;
+        $record=Category::find($id);
+        $record->delete();
+        return response()->json('success');
     }
 }

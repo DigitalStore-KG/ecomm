@@ -26,8 +26,8 @@
         </td>
         <td>{{$categorie->created_at}} </td>
         <td>
-            <a href="" style="font-size: 18px;padding:5px;"><i class="fa fa-edit"></i></a>
-            <a href="javascript::void(0)" style="font-size: 18px;padding:5px;" data-id="" class="category_delete"><i class="fa fa-trash"></i></a>
+            <a href="{{route('edit.category',$categorie->id)}}" style="font-size: 18px;padding:5px;"><i class="fa fa-edit"></i></a>
+            <a href="javascript::void(0)" style="font-size: 18px;padding:5px;" data-id="{{$categorie->id}}" class="category_delete"><i class="fa fa-trash"></i></a>
         </td>
     </tr>
         
@@ -58,3 +58,23 @@
    })
 </script>
 @endpush --}}
+@push('footer-script')
+    <script>
+        $('.category_delete').on('click',function(){
+            if(confirm('Are you sure to delete')){
+                var id= $(this).data('id');
+                $.ajax({
+                    url:'{{route('destroy.category')}}',
+                    method: 'post',
+                    data:{
+                        'id':id,
+                        _token:'{{csrf_token()}}'
+                    },
+                    success:function(data){
+                        location.reload();
+                    }
+                })
+            }
+        });
+    </script>
+@endpush
