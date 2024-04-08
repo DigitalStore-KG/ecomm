@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard');
+
 Route::get('/register',[AdminController::class,'create'])->name('create.admins');
 Route::post('/register',[AdminController::class,'store'])->name('store.admins');
 Route::get('/login',[AdminController::class,'login'])->name('login.admins');
@@ -42,3 +42,7 @@ Route::put('/product/update/{id}',[ProductController::class,'update'])->name('up
 Route::delete('/product/delete/{id}',[ProductController::class,'destroy'])->name('delete.product');
 Route::get('/product/addDetail/{id}',[ProductController::class,'addDetail'])->name('addDetail.product');
 Route::post('/product/addDetail',[ProductController::class,'storeDetail'])->name('storeDetail.product');
+
+Route::middleware(['authAdmin'])->group(function(){
+    Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard');
+});
