@@ -32,7 +32,7 @@
                     {{$product->price}} </td>
 
                     <td>
-                        <button><a href="">Add Details</a></button>
+                        <button><a href="{{route('addDetail.product',$product->id)}}">Add Details</a></button>
                     </td>
                     <td><img style="height: 80px; width:80px;" src="{{asset('uploads/products/'.$product->image)}}" alt="Loading"> </td>
                     <td>

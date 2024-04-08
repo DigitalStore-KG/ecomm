@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use App\Models\productDetail;
 
 class ProductController extends Controller
 {
@@ -121,5 +122,23 @@ class ProductController extends Controller
         $record=Product::find($id);
         $record->delete();
         return response(['message'=>'Record Deleted Successfully']);
+    }
+    public function addDetail($id){
+        $product=Product::find($id);
+        
+        return view('admin.product.addDetail',compact('product'));
+    }
+    public function storeDetail(Request $request){
+        $validated=$request->validate([
+            'title' =>  ['required'],
+            'product_id'    =>  ['required'],
+            'total_items'   =>  ['required'],
+            'description'   =>   ['required'],
+        ]);
+        $record= ProductDetail::updateOrCreate(['product_id'=>$request->product_id],$validated);
+        if($record){
+            return back()->with('message','updated and created successfully');
+        }
+        
     }
 }

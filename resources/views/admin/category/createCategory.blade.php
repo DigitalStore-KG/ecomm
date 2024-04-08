@@ -4,15 +4,21 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6"> 
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{session()->get('message')}}
+                </div>
+                
+            @endif
+            @if(session()->has('error'))
+                <div class="alert alert-success">
+                    {{session()->get('error')}}
+                </div>
+                
+            @endif
             <form action="{{route('store.category')}}" class="form" method="post">
                 @csrf
                 <h1>Form to add Category</h1>
-                @if(session()->has('message'))
-                    <div class="alert alert-success">
-                        {{session()->get('message')}}
-                    </div>
-                    
-                @endif
                 <div class="form-group">
                     <label for="" class="control-label">Category Name</label>
                     <input type="text" name="name" class="form-control">
