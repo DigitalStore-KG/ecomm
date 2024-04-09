@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Product;
 
 class CustomerController extends Controller
 {
@@ -11,8 +14,24 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        
-        return view('customer.home');
+        $products=Product::get();
+        $new_products=Product::limit(6)->latest()->get();
+        return view('customer.home',compact('products','new_products'));
+    }
+    public function login(){
+        return view('customer.login');
+    }
+    public function loginPermission(Request $request){
+        $validated =    $request->validate([
+            'email' =>  ['required','email'],
+            'password'  =>  ['required'],
+        ]);
+        $validated['role']='user';
+        dd($validated);
+    }
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('home');
     }
 
     /**
@@ -20,7 +39,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customer.createUser');
     }
 
     /**
@@ -28,7 +47,19 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated=$request->validate([
+            'name'  =>  ['required'],
+            'email' =>  ['required','email','unique:users,email'],
+            'password'  =>  ['required','min:6'],
+            'confirm_password'  =>  ['required','same:password'],
+        ]);
+        $validated['role']='user';
+        $user = User::create($validated);
+        if ($user) {
+            return redirect()->route('register.customer')->with('message','Registered Successfully');
+        }else{
+            return back()->with('error','Not registered, Try after sometime');
+        }
     }
 
     /**

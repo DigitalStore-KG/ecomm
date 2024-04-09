@@ -17,17 +17,20 @@ use App\Http\Controllers\CustomerController;
 |
 */
 
+/* ----------------Customer Sector Starts-------------------- */
+
+Route::get('/register',[CustomerController::class,'create'])->name('register.customer');
+Route::post('/register',[CustomerController::class,'store'])->name('storeUser.customer');
+Route::get('/login',[CustomerController::class,'login'])->name('login.customer');
+Route::post('/loginPermission',[CustomerController::class,'loginPermission'])->name('loginPermission.customer');
+Route::get('/logout',[CustomerController::class,'logout'])->name('logout.customer');
 Route::get('/',[CustomerController::class,'index'])->name('home');
+/* -------------------Customer Sector Ends----------------------- */
+/* ---------------Admin Sector starts------------------ */
+Route::get('/admin/login',[AdminController::class,'login'])->name('login.admins');
+Route::post('/admin/login',[AdminController::class,'loginCheck'])->name('loginCheck.admins');
 
-Route::get('/login',[AdminController::class,'login'])->name('login.admins');
-Route::post('/login',[AdminController::class,'loginCheck'])->name('loginCheck.admins');
-
-
-
-
-
-
-Route::middleware(['authAdmin'])->group(function(){
+Route::prefix('admin')->middleware(['authAdmin'])->group(function(){
     Route::get('/logout',[AdminController::class,'logout'])->name('logout.admins');
     Route::get('/register',[AdminController::class,'create'])->name('create.admins');
     Route::post('/register',[AdminController::class,'store'])->name('store.admins');
@@ -45,7 +48,7 @@ Route::middleware(['authAdmin'])->group(function(){
     Route::get('/product/list',[ProductController::class,'index'])->name('list.product');
     Route::get('/product/edit/{id}',[ProductController::class,'edit'])->name('edit.product');
     Route::put('/product/update/{id}',[ProductController::class,'update'])->name('update.product');
-    Route::delete('/product/delete/{id}',[ProductController::class,'destroy'])->name('delete.product');
+    Route::delete('/product/delProduct/{id}',[ProductController::class,'destroy'])->name('delete.product');
     Route::get('/product/addDetail/{id}',[ProductController::class,'addDetail'])->name('addDetail.product');
     Route::post('/product/addDetail',[ProductController::class,'storeDetail'])->name('storeDetail.product');
 

@@ -54,7 +54,7 @@
             if(confirm('are you sure to delete')){
                 var id= $(this).data('id');
                 $.ajax({
-                    url:'delete/'+id,
+                    url:'delProduct/'+id,
                     method:'delete',
                     data:{
                         _token:'{{csrf_token()}}',

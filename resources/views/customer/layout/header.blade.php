@@ -22,7 +22,7 @@
         <span class="icon-bar"></span>
     </a>
       <div class="navbar-inner">
-        <a class="brand" href=""><img src="{{asset('front_theme/themes/images/logo.png')}}" alt="Bootsshop"/></a>
+        <a class="brand" href="{{route('home')}}"><img src="{{asset('front_theme/themes/images/logo.png')}}" alt="Bootsshop"/></a>
             <form class="form-inline navbar-search" method="post" action="products.html" >
             <input id="srchFld" class="srchTxt" type="text" />
               <select class="srchTxt">
@@ -41,10 +41,10 @@
          <li class=""><a href="">Contact</a></li>
          <li class="">
           @if(Auth::user())
-          <a href=""><span class="btn btn-large btn-success">Logout</span> </a>
+          <a href="{{route('logout.customer')}}"><span class="btn btn-large btn-success">Logout</span> </a>
           @else
-          <a href=""><span class="btn btn-large btn-success">Login</span></a>   
-          <a href=""><span class="btn btn-large btn-success">Register</span></a>
+          <a href="{{route('login.customer')}}"><span class="btn btn-large btn-success">Login</span></a>   
+          <a href="{{route('register.customer')}}"><span class="btn btn-large btn-success">Register</span></a>
 
           @endif
          
