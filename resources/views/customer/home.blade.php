@@ -87,7 +87,7 @@
                                 <a href=""><img src="{{asset('uploads/products/'.$item->image)}}" alt=""> </a>
                             <div class="caption">
                                 <h5>{{$item->name}} </h5>
-                                <h4><a href="" class="btn">VIEW</a><span class="pull-right">{{$item->price}} </span> </h4>
+                                <h4><a href="{{route('productView.customer',$item->id)}}" class="btn">VIEW</a><span class="pull-right">{{$item->price}} </span> </h4>
                             </div>
                         </div>
                     </li>
@@ -107,7 +107,7 @@
         @foreach ($new_products as $new_product)
             <li class="span3">
                 <div class="thumbnail">
-                    <a href=""><img src="{{asset('uploads/products/'.$new_product->image)}}" alt=""> </a>
+                    <a href="{{route('productView.customer',$new_product->id)}}"><img src="{{asset('uploads/products/'.$new_product->image)}}" alt=""> </a>
                     <div class="caption">
                         <h5>{{$new_product->name}} </h5>
                         <p>Lorem ipsum dolor sit amet. </p>

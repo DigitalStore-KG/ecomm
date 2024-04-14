@@ -25,6 +25,7 @@ Route::get('/login',[CustomerController::class,'login'])->name('login.customer')
 Route::post('/loginPermission',[CustomerController::class,'loginPermission'])->name('loginPermission.customer');
 Route::get('/logout',[CustomerController::class,'logout'])->name('logout.customer');
 Route::get('/',[CustomerController::class,'index'])->name('home');
+Route::get('/productView/{id}',[CustomerController::class,'productView'])->name('productView.customer');
 /* -------------------Customer Sector Ends----------------------- */
 /* ---------------Admin Sector starts------------------ */
 Route::get('/admin/login',[AdminController::class,'login'])->name('login.admins');

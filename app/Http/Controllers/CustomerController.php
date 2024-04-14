@@ -62,6 +62,13 @@ class CustomerController extends Controller
         }
     }
 
+    public function productView($id){
+        
+        $product=Product::where('id',$id)->with('itemdetail')->first();
+        $category_id=$product->category_id;
+        $related_products=Product::where('category_id',$category_id)->get();
+        return view('customer.productView',compact('product','related_products'));
+    }
     /**
      * Display the specified resource.
      */
