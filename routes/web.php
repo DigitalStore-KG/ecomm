@@ -37,6 +37,8 @@ Route::get('/cart/delete',[CartController::class,'destroy'])->name('delete.cart'
 /* -----------CartController Ends-------------------------- */
 /* -----------ProductBookingController Starts-------------------------- */
 Route::post('/product/booking',[ProductBookingController::class,'store'])->name('product.booking');
+Route::get('/prouct/bookingSuccess',[ProductBookingController::class,'bookingSuccess'])->name('product.bookingSuccess');
+Route::get('/product/bookingFail',[ProductBookingController::class,'bookingFail'])->name('product.bookingFail');
 /* -----------ProductBookingController Ends-------------------------- */
 /* ---------------Admin Sector starts------------------ */
 Route::get('/admin/login',[AdminController::class,'login'])->name('login.admins');
