@@ -59,7 +59,7 @@
 
 <script src="{{asset('front_theme/themes/js/bootshop.js')}}"></script>
 <script src="{{asset('front_theme/themes/js/jquery.lightbox-0.5.js')}}"></script>
-<script src="{{asset('front_theme/themes/js/jquery-original.js')}}" type="text/javascript"></script>
+{{-- <script src="{{asset('front_theme/themes/js/jquery-original.js')}}" type="text/javascript"></script> --}}
 	
 	<!-- Themes switcher section ============================================================================================= -->
 

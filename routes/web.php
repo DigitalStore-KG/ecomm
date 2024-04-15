@@ -5,6 +5,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductBookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +28,16 @@ Route::post('/loginPermission',[CustomerController::class,'loginPermission'])->n
 Route::get('/logout',[CustomerController::class,'logout'])->name('logout.customer');
 Route::get('/',[CustomerController::class,'index'])->name('home');
 Route::get('/productView/{id}',[CustomerController::class,'productView'])->name('productView.customer');
+
 /* -------------------Customer Sector Ends----------------------- */
+/* -----------CartController Starts-------------------------- */
+Route::get('/cart',[CartController::class,'index'])->name('cart.customer');
+Route::post('/cart/store',[CartController::class,'store'])->name('cartStore.customer');
+Route::get('/cart/delete',[CartController::class,'destroy'])->name('delete.cart');
+/* -----------CartController Ends-------------------------- */
+/* -----------ProductBookingController Starts-------------------------- */
+Route::post('/product/booking',[ProductBookingController::class,'store'])->name('product.booking');
+/* -----------ProductBookingController Ends-------------------------- */
 /* ---------------Admin Sector starts------------------ */
 Route::get('/admin/login',[AdminController::class,'login'])->name('login.admins');
 Route::post('/admin/login',[AdminController::class,'loginCheck'])->name('loginCheck.admins');

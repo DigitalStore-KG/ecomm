@@ -51,7 +51,7 @@
 				  <div class="control-group">
 					<label class="control-label"><span>{{$product->price}} </span></label>
 					
-					<form method="post" action="">
+					<form method="post" action="{{route('cartStore.customer')}}">
 						@csrf
 					<div class="controls">
 					<input type="number" name="qty" class="span1" placeholder="Qty." required>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Product;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
@@ -27,7 +28,11 @@ class CustomerController extends Controller
             'password'  =>  ['required'],
         ]);
         $validated['role']='user';
-        dd($validated);
+        if(Auth::attempt($validated)){
+            return redirect()->route('home');
+        }else{
+            return back();
+        }
     }
     public function logout(){
         Auth::logout();
@@ -53,6 +58,8 @@ class CustomerController extends Controller
             'password'  =>  ['required','min:6'],
             'confirm_password'  =>  ['required','same:password'],
         ]);
+        unset($validated['password'],$validated['confirm_password']);
+        $validated['password']=Hash::make($request->password);
         $validated['role']='user';
         $user = User::create($validated);
         if ($user) {
