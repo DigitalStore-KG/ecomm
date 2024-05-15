@@ -9,6 +9,7 @@ use App\Models\ProductDetail;
 class Product extends Model
 {
     use HasFactory;
+    protected $image=null;
     protected $fillable=[
         'category_id',
         'name',

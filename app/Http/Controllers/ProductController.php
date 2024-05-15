@@ -123,6 +123,10 @@ class ProductController extends Controller
         $record->delete();
         return response(['message'=>'Record Deleted Successfully']);
     }
+    public function productList(){
+        $products=Product::paginate(10);
+        return view('admin.product.productList',compact('products'));
+    }
     public function addDetail($id){
         $product=Product::find($id);
         

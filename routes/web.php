@@ -28,6 +28,7 @@ Route::post('/loginPermission',[CustomerController::class,'loginPermission'])->n
 Route::get('/logout',[CustomerController::class,'logout'])->name('logout.customer');
 Route::get('/',[CustomerController::class,'index'])->name('home');
 Route::get('/productView/{id}',[CustomerController::class,'productView'])->name('productView.customer');
+Route::get('/product/list',[ProductController::class,'productList'])->name('product.list');
 
 /* -------------------Customer Sector Ends----------------------- */
 /* -----------CartController Starts-------------------------- */

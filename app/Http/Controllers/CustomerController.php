@@ -15,6 +15,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        $product=[];
         $products=Product::get();
         $new_products=Product::limit(6)->latest()->get();
         return view('customer.home',compact('products','new_products'));
